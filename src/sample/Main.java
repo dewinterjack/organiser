@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,7 +17,7 @@ import javafx.scene.control.Button;
  * @author Jack Dewinter
  */
 
-public class Main extends Application {
+public class Main extends Application implements EventHandler<ActionEvent>{
 
     Button button;
 
@@ -30,6 +32,7 @@ public class Main extends Application {
 
         button = new Button();
         button.setText("Click me");
+        button.setOnAction(this);
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
@@ -40,6 +43,10 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
-
+    @Override
+    public void handle(ActionEvent event) {
+        if(event.getSource() == button){
+            System.out.println("Button pressed!");
+        }
+    }
 }
